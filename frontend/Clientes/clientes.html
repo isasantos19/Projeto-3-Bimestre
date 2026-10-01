@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD Clientes</title>
+    <link rel="stylesheet" href="clientes.css">
+</head>
+
+<body onload="inicializar()">
+
+    <header>
+        <h1>Cadastro de Clientes</h1>
+        <p>Gerencie os clientes cadastrados no sistema.</p>
+    </header>
+
+    <nav>
+        <a href="../Menu/menu.html">Menu</a>
+        <a href="../Produtos/produtos.html">Produtos</a>
+        <a href="../Categorias/categoria.html">Categorias</a>
+        <a href="../Fornecedores/fornecedores.html">Fornecedores</a>
+        <a href="../Clientes/clientes.html">Clientes</a>
+        <a href="../Estoque/estoque.html">Estoque</a>
+    </nav>
+
+    <main class="container-master">
+        <div class="conteudo-principal">
+
+            <section class="form-esquerda">
+                <h2>Dados do Cliente</h2>
+
+                <label for="inputId_cliente">ID do Cliente</label>
+                <div class="linha-id">
+                    <input type="text" name="inputId_cliente" id="inputId_cliente" placeholder="Ex: 1" maxlength="10">
+                    <input type="button" value="Procure" id="btProcure" onclick="procure()">
+                    <input type="button" value="Inserir" id="btInserir" onclick="inserir()" style="display:none;">
+                    <input type="button" value="Alterar" id="btAlterar" onclick="alterar()" style="display:none;">
+                    <input type="button" value="Excluir" id="btExcluir" onclick="excluir()" style="display:none;">
+                </div>
+
+                <label for="inputnome_cliente">Nome do Cliente:</label>
+                <input type="text" name="inputnome_cliente" id="inputnome_cliente" placeholder="Ex: Maria da Silva" maxlength="100">
+
+                <label for="inputcpf_cliente">CPF:</label>
+                <input type="text" name="inputcpf_cliente" id="inputcpf_cliente" placeholder="Ex: 000.000.000-00" maxlength="14">
+
+                <label for="inputtelefone_cliente">Telefone:</label>
+                <input type="text" name="inputtelefone_cliente" id="inputtelefone_cliente" placeholder="Ex: (44) 99999-9999" maxlength="15">
+
+                <label for="inputemail_cliente">E-mail:</label>
+                <input type="email" name="inputemail_cliente" id="inputemail_cliente" placeholder="Ex: cliente@email.com" maxlength="50">
+
+                <label for="inputnum_cartao">Número do Cartão:</label>
+                <input type="text" name="inputnum_cartao" id="inputnum_cartao" placeholder="Ex: 100001" maxlength="20">
+
+                <div id="divAviso">Informe o ID e clique em Procure</div>
+
+                <div class="botoes-acao">
+                    <input type="button" value="Salvar" id="btSalvar" onclick="salvar()" style="display:none;">
+                    <input type="button" value="Cancelar" id="btCancelar" onclick="cancelarOperacao()" style="display:none;">
+                </div>
+            </section>
+
+            <section class="lista-cliente">
+                <h3>Clientes Cadastrados</h3>
+                <div id="outputSaida">Carregando...</div>
+            </section>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>Isabela Maria Ferreira dos Santos | Turma M32 | 2026</p>
+    </footer>
+
+    <script src="./clientes.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,349 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #ffffff;
+    color: #171717;
+}
+
+/* =========================
+   IMAGEM PRINCIPAL
+========================= */
+
+.hero {
+    height: 520px;
+    width: 100%;
+    position: relative;
+
+    background-image:
+        linear-gradient(
+            to right,
+            rgba(0, 0, 0, 0.88),
+            rgba(0, 0, 0, 0.25),
+            rgba(0, 0, 0, 0.85)
+        ),
+        url("../../imagens/fundo-menu.png");
+
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* Escurece também as extremidades */
+
+.hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            to right,
+            rgba(0, 0, 0, 0.65),
+            transparent 25%,
+            transparent 75%,
+            rgba(0, 0, 0, 0.65)
+        );
+
+    pointer-events: none;
+}
+
+/* =========================
+   LOGO
+========================= */
+
+.logo {
+    position: absolute;
+    top: 30px;
+    left: 50px;
+
+    z-index: 2;
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo h1 {
+    color: #ffffff;
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.logo-linha {
+    width: 35px;
+    height: 3px;
+    background-color: #e00000;
+    margin-top: 8px;
+}
+
+/* =========================
+   TEXTO DO HERO
+========================= */
+
+.hero-conteudo {
+    position: relative;
+    z-index: 2;
+
+    text-align: center;
+    color: #ffffff;
+
+    max-width: 850px;
+}
+
+.hero-conteudo .subtitulo {
+    font-size: 19px;
+    letter-spacing: 8px;
+    margin-bottom: 18px;
+}
+
+.hero-conteudo h2 {
+    font-size: 64px;
+    line-height: 1.05;
+    font-weight: 800;
+}
+
+.hero-conteudo h2 span {
+    color: #e00000;
+}
+
+.linha-vermelha {
+    width: 75px;
+    height: 4px;
+    background-color: #e00000;
+    margin: 30px auto 0;
+}
+
+/* =========================
+   ÁREA DOS CARDS
+========================= */
+
+.area-acesso {
+    width: 90%;
+    max-width: 1400px;
+
+    margin: 30px auto 40px;
+}
+
+/* =========================
+   CARDS
+========================= */
+
+nav {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 28px;
+}
+
+.card-menu {
+    min-height: 160px;
+
+    background-color: #151515;
+
+    border-radius: 18px;
+
+    border: 2px solid #d40000;
+
+    text-decoration: none;
+    color: #ffffff;
+
+    display: flex;
+    align-items: center;
+
+    padding: 28px;
+
+    position: relative;
+    overflow: hidden;
+
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+
+    transition: 0.2s;
+}
+
+/* detalhe vermelho no canto */
+
+.card-menu::after {
+    content: "";
+
+    position: absolute;
+
+    width: 150px;
+    height: 150px;
+
+    right: -65px;
+    top: -65px;
+
+    background-color: #8f0000;
+
+    border-radius: 50%;
+}
+
+/* =========================
+   ÍCONE DO CARD
+========================= */
+
+.card-icone {
+    width: 75px;
+    height: 75px;
+
+    min-width: 75px;
+
+    border-radius: 50%;
+
+    background-color: #d40000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-right: 25px;
+
+    position: relative;
+    z-index: 2;
+
+    font-size: 32px;
+}
+
+/* =========================
+   TEXTO DO CARD
+========================= */
+
+.card-texto {
+    position: relative;
+    z-index: 2;
+}
+
+.card-texto h3 {
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+
+.card-texto p {
+    color: #dddddd;
+
+    font-size: 16px;
+
+    line-height: 1.4;
+
+    max-width: 230px;
+}
+
+/* =========================
+   SETA
+========================= */
+
+.card-seta {
+    position: absolute;
+
+    right: 30px;
+    bottom: 25px;
+
+    z-index: 2;
+
+    color: #e00000;
+
+    font-size: 30px;
+}
+
+/* =========================
+   EFEITO AO PASSAR O MOUSE
+========================= */
+
+.card-menu:hover {
+    transform: translateY(-5px);
+
+    background-color: #1d1d1d;
+
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+}
+
+.card-menu:hover .card-icone {
+    background-color: #e00000;
+}
+
+/* =========================
+   RODAPÉ
+========================= */
+
+footer {
+    background-color: #151515;
+
+    border-top: 3px solid #e00000;
+
+    min-height: 90px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    color: #dddddd;
+
+    padding: 25px;
+}
+
+footer p {
+    font-size: 14px;
+}
+
+/* =========================
+   RESPONSIVIDADE
+========================= */
+
+@media (max-width: 1000px) {
+
+    nav {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .hero-conteudo h2 {
+        font-size: 50px;
+    }
+}
+
+@media (max-width: 700px) {
+
+    .hero {
+        height: 450px;
+    }
+
+    .logo {
+        left: 25px;
+        top: 25px;
+    }
+
+    .logo h1 {
+        font-size: 25px;
+    }
+
+    .hero-conteudo {
+        padding: 20px;
+    }
+
+    .hero-conteudo .subtitulo {
+        font-size: 14px;
+        letter-spacing: 5px;
+    }
+
+    .hero-conteudo h2 {
+        font-size: 40px;
+    }
+
+    nav {
+        grid-template-columns: 1fr;
+    }
+
+    .area-acesso {
+        width: 92%;
+    }
+}

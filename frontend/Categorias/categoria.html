@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD Categorias</title>
+    <link rel="stylesheet" href="categoria.css">
+</head>
+
+<body onload="inicializar()">
+
+    <header>
+        <h1>Cadastro de Categorias</h1>
+        <p>Gerencie as categorias do sistema.</p>
+    </header>
+
+    <nav>
+        <a href="../Menu/menu.html">Menu</a>
+        <a href="../Produtos/produtos.html">Produtos</a>
+        <a href="../Categorias/categoria.html">Categorias</a>
+        <a href="../Fornecedores/fornecedores.html">Fornecedores</a>
+        <a href="../Clientes/clientes.html">Clientes</a>
+        <a href="../Estoque/estoque.html">Estoque</a>
+    </nav>
+
+    <main class="container-master">
+        
+        <div class="conteudo-principal">
+
+            <section class="form-esquerda">
+
+                <h2>Dados da Categoria</h2>
+
+                <label for="inputId_categoria">ID da Categoria</label>
+                <div class="linha-id">
+                    <input type="text" name="inputId_categoria" id="inputId_categoria" placeholder="Ex: 1">
+                    <input type="button" value="Procure" id="btProcure" onclick="procure()">
+                    <input type="button" value="Inserir" id="btInserir" onclick="inserir()" style="display:none;">
+                    <input type="button" value="Alterar" id="btAlterar" onclick="alterar()" style="display:none;">
+                    <input type="button" value="Excluir" id="btExcluir" onclick="excluir()" style="display:none;">
+                </div>
+
+                <label for="inputnome_categoria">Nome da Categoria:</label>
+                <input type="text" name="inputnome_categoria" id="inputnome_categoria">
+
+                <label for="inputdescricao_categoria">Descrição da Categoria:</label>
+                <textarea name="inputdescricao_categoria" id="inputdescricao_categoria" rows="4"></textarea>
+
+                <label for="inputtipo_categoria">Tipo da Categoria:</label>
+                <input type="text" name="inputtipo_categoria" id="inputtipo_categoria">
+
+                <div id="divAviso">
+                    Informe o ID e clique em Procure
+                </div>
+
+                <div class="botoes-acao">
+                    <input type="button" value="Salvar" id="btSalvar" onclick="salvar()" style="display:none;">
+                    <input type="button" value="Cancelar" id="btCancelar" onclick="cancelarOperacao()" style="display:none;">
+                </div>
+
+            </section>
+
+            <section class="lista-categoria">
+
+                <h3>Categorias Cadastradas</h3>
+
+                <div id="outputSaida">
+                    Carregando...
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+    <footer>
+        <p>Isabela Maria Ferreira dos Santos | Turma M32 | 2026</p>
+    </footer>
+
+    <script src="./categoria.js"></script>
+
+</body>
+</html>
