@@ -1,0 +1,53 @@
+.
+├── backend
+│   ├── controllers
+│   │   ├── categoriasController.js
+│   │   ├── clientesController.js
+│   │   ├── estoqueController.js
+│   │   ├── fornecedoresController.js
+│   │   ├── menuController.js
+│   │   └── produtosController.js
+│   ├── database.js
+│   ├── routes
+│   │   ├── categoriasRoutes.js
+│   │   ├── clientesRoutes.js
+│   │   ├── estoqueRoutes.js
+│   │   ├── fornecedoresRoutes.js
+│   │   ├── menuRoutes.js
+│   │   └── produtosRoutes.js
+│   └── server.js
+├── documentacao
+│   └── diagrama_banco.png
+├── frontend
+│   ├── Categorias
+│   │   ├── categoria.css
+│   │   ├── categoria.html
+│   │   └── categoria.js
+│   ├── Clientes
+│   │   ├── clientes.css
+│   │   ├── clientes.html
+│   │   └── clientes.js
+│   ├── Estoque
+│   │   ├── estoque.css
+│   │   ├── estoque.html
+│   │   └── estoque.js
+│   ├── Fornecedores
+│   │   ├── fornecedor.html
+│   │   ├── fornecedores.css
+│   │   └── fornecedores.js
+│   ├── Menu
+│   │   ├── menu.css
+│   │   └── menu.html
+│   └── Produtos
+│       ├── produtos.css
+│       ├── produtos.html
+│       └── produtos.js
+├── imagens
+│   ├── fundo-menu.jpg
+│   └── silhueta.png
+├── .gitignore
+├── index.html
+├── package.json
+├── package-lock.json
+├── README.md
+└── estrutura.txt
