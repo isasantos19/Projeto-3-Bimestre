@@ -1,724 +1,302 @@
-# Sistema de Gerenciamento de Mercado
+Sobre o projeto
 
-Projeto desenvolvido para a disciplina de Desenvolvimento Web 1 (DW1), como atividade avaliativa do 3º bimestre de 2026.
+O Mercado é um sistema desenvolvido para a disciplina de Desenvolvimento Web 1 (DW1).
 
-O projeto consiste no desenvolvimento de uma aplicação web funcional para gerenciamento de um mercado, utilizando a arquitetura Cliente/Servidor, o padrão MVC (Model-View-Controller), Node.js, Express e PostgreSQL.
+O objetivo do projeto é simular o gerenciamento de um mercado, permitindo o cadastro, consulta, alteração e exclusão de informações relacionadas aos produtos, categorias, estoque, fornecedores e clientes.
 
----
+A aplicação foi desenvolvida utilizando HTML, CSS e JavaScript no frontend. O backend foi desenvolvido em Node.js utilizando o Express, seguindo uma organização baseada em rotas e controllers. Os dados ficam armazenados em um banco de dados PostgreSQL.
 
-# 1. Sobre o projeto
+Como o projeto funciona
 
-O sistema simula o gerenciamento de um mercado, permitindo realizar operações de cadastro, consulta, alteração, exclusão e listagem de informações.
+O sistema permite que o usuário acesse diferentes áreas do mercado e realize operações de cadastro e gerenciamento dos dados.
 
-Os principais módulos do sistema são:
+O usuário pode:
 
-- Categorias
-- Produtos
-- Estoque
-- Fornecedores
-- Clientes
+Cadastrar, consultar, alterar e excluir produtos;
+Cadastrar, consultar, alterar e excluir categorias;
+Cadastrar, consultar, alterar e excluir informações do estoque;
+Cadastrar, consultar, alterar e excluir fornecedores;
+Cadastrar, consultar, alterar e excluir clientes;
+Cadastrar imagens para os produtos.
 
-O sistema também possui gerenciamento de imagens no módulo de Produtos, permitindo o cadastro e a exibição de imagens dos produtos.
+Quando o usuário realiza alguma ação, o JavaScript do frontend envia uma requisição para o servidor utilizando a API Fetch.
 
-O projeto foi organizado utilizando como referência a estrutura arquitetural do projeto Candyshop fornecido como modelo na disciplina.
+O servidor recebe a requisição e encaminha para a rota correspondente. A rota direciona a requisição para o Controller responsável pela operação.
 
----
+O Controller realiza a operação necessária no banco de dados por meio do database.js, que utiliza o PostgreSQL.
 
-# 2. Objetivo
+Depois disso, o resultado retorna para o frontend em formato JSON, e o JavaScript utiliza essas informações para atualizar a página.
 
-O objetivo do projeto é desenvolver uma aplicação web funcional baseada na arquitetura Cliente/Servidor, integrada a um banco de dados PostgreSQL e organizada de acordo com o padrão MVC.
+Tecnologias utilizadas
+HTML5
+CSS3
+JavaScript
+Node.js
+Express
+PostgreSQL
+pg
+dotenv
+cors
+multer
+Estrutura do projeto
+Frontend
+Menu
 
-A aplicação permite que o usuário gerencie diferentes informações de um mercado por meio de uma interface web, enquanto o servidor realiza a comunicação com o banco de dados.
+menu.html
 
----
+Contém a página inicial do sistema e os acessos para as diferentes áreas do mercado.
 
-# 3. Tecnologias utilizadas
+menu.css
 
-## Front-end
+Responsável pela estilização da página inicial.
 
-- HTML5
-- CSS3
-- JavaScript
+Categorias
 
-## Back-end
+categoria.html
 
-- Node.js
-- Express
-- CORS
-- Multer
+Contém a interface para gerenciamento das categorias.
 
-## Banco de dados
+categoria.css
 
-- PostgreSQL
+Responsável pela estilização da página de categorias.
 
-## Versionamento
+categoria.js
 
-- Git
-- GitHub
+Realiza as requisições para o servidor e controla as operações de cadastro, consulta, alteração e exclusão de categorias.
 
----
+Produtos
 
-# 4. Arquitetura do projeto
+produtos.html
 
-O projeto utiliza a arquitetura Cliente/Servidor e o padrão MVC (Model-View-Controller).
+Contém a interface para gerenciamento dos produtos.
 
-## 4.1 Cliente
+produtos.css
 
-O cliente corresponde ao Front-end da aplicação.
+Responsável pela estilização da página de produtos.
 
-É responsável por:
+produtos.js
 
-- Exibir as páginas do sistema;
-- Apresentar os formulários;
-- Receber os dados digitados pelo usuário;
-- Realizar validações;
-- Enviar requisições ao servidor;
-- Receber as respostas da API;
-- Exibir os dados na página.
+Realiza as requisições para o servidor, controla o cadastro e gerenciamento dos produtos e também realiza o envio das imagens.
 
-As requisições entre o Front-end e o Back-end são realizadas utilizando `fetch()`.
+Estoque
 
----
+estoque.html
 
-## 4.2 Servidor
+Contém a interface para gerenciamento do estoque.
 
-O servidor foi desenvolvido utilizando Node.js e Express.
+estoque.css
 
-É responsável por:
+Responsável pela estilização da página de estoque.
 
-- Receber as requisições do Front-end;
-- Encaminhar as requisições para as rotas correspondentes;
-- Executar os Controllers;
-- Realizar operações no banco de dados;
-- Retornar respostas ao Front-end;
-- Realizar o envio de imagens dos produtos.
+estoque.js
 
----
+Realiza as requisições para o servidor e controla as operações de cadastro, consulta, alteração e exclusão do estoque.
 
-## 4.3 Router
+Fornecedores
 
-As Routes são responsáveis pelo mapeamento dos endpoints da aplicação.
+fornecedor.html
 
-Cada arquivo de rota define quais métodos HTTP podem ser utilizados em determinado recurso.
+Contém a interface para gerenciamento dos fornecedores.
 
-São utilizados métodos como:
+fornecedores.css
 
-- `GET` para consultas;
-- `POST` para inserções;
-- `PUT` para alterações;
-- `DELETE` para exclusões.
+Responsável pela estilização da página de fornecedores.
 
-Exemplo de organização:
+fornecedores.js
 
-```text
-routes/
-├── categoriasRoutes.js
-├── clientesRoutes.js
-├── estoqueRoutes.js
-├── fornecedoresRoutes.js
-├── menuRoutes.js
-└── produtosRoutes.js 4.4 Controllers
+Realiza as requisições para o servidor e controla as operações de cadastro, consulta, alteração e exclusão dos fornecedores.
 
-Os Controllers são responsáveis pela lógica das operações solicitadas pelas rotas.
-
-Exemplos de operações realizadas pelos Controllers:
+Clientes
 
-Listar registros;
-Buscar um registro pelo ID;
-Criar registros;
-Atualizar registros;
-Excluir registros;
-Enviar imagens.
-
-Exemplo de organização:
-
-controllers/
-├── categoriasController.js
-├── clientesController.js
-├── estoqueController.js
-├── fornecedoresController.js
-├── menuController.js
-└── produtosController.js
-4.5 Banco de dados
-
-A conexão entre o Back-end e o PostgreSQL é realizada pelo arquivo:
+clientes.html
 
-backend/database.js
+Contém a interface para gerenciamento dos clientes.
 
-As informações de conexão são obtidas através de variáveis de ambiente armazenadas no arquivo .env.
+clientes.css
 
-5. Funcionalidades do sistema
-5.1 Categorias
-
-O módulo de Categorias permite:
-
-Inserir categorias;
-Consultar categorias;
-Alterar categorias;
-Excluir categorias;
-Listar categorias.
+Responsável pela estilização da página de clientes.
 
-Os dados armazenados incluem:
+clientes.js
 
-ID da categoria;
-Nome da categoria;
-Descrição da categoria;
-Tipo da categoria.
-5.2 Produtos
+Realiza as requisições para o servidor e controla as operações de cadastro, consulta, alteração e exclusão dos clientes.
 
-O módulo de Produtos permite:
+Backend
+server.js
 
-Inserir produtos;
-Consultar produtos;
-Alterar produtos;
-Excluir produtos;
-Listar produtos;
-Selecionar uma categoria para o produto;
-Cadastrar imagens;
-Exibir imagens dos produtos.
+Responsável por iniciar o servidor, configurar o Express, permitir requisições do frontend, disponibilizar arquivos estáticos e registrar as rotas da aplicação.
 
-Os dados armazenados incluem:
+database.js
 
-ID do produto;
-Nome do produto;
-Preço;
-Marca;
-Imagem;
-Categoria.
-5.3 Estoque
+Responsável pela conexão com o banco de dados PostgreSQL e pela execução das consultas SQL por meio do query.
 
-O módulo de Estoque permite:
+Routes
 
-Inserir registros de estoque;
-Consultar registros;
-Alterar registros;
-Excluir registros;
-Listar registros;
-Associar um produto ao seu estoque.
+As Routes definem os caminhos da API e direcionam cada requisição para o Controller correspondente.
 
-Os dados armazenados incluem:
-
-ID do estoque;
-Quantidade;
-Estoque mínimo;
-Data de atualização;
-Produto relacionado.
-5.4 Fornecedores
-
-O módulo de Fornecedores permite:
-
-Inserir fornecedores;
-Consultar fornecedores;
-Alterar fornecedores;
-Excluir fornecedores;
-Listar fornecedores.
-
-Os dados armazenados incluem:
-
-ID do fornecedor;
-Nome;
-CNPJ;
-Telefone;
-E-mail.
-5.5 Clientes
-
-O módulo de Clientes permite:
-
-Inserir clientes;
-Consultar clientes;
-Alterar clientes;
-Excluir clientes;
-Listar clientes.
-
-Os dados armazenados incluem:
-
-ID do cliente;
-Nome;
-CPF;
-Telefone;
-E-mail;
-Número do cartão.
-6. Banco de dados
-
-O sistema utiliza o PostgreSQL como banco de dados relacional.
-
-O banco de dados é composto por cinco tabelas:
-
-CATEGORIAS
-PRODUTOS
-ESTOQUE
-FORNECEDORES
-CLIENTES
-
-O arquivo utilizado para criação e carga inicial do banco é:
-
-documentacao/mercado.sql
-
-O arquivo contém os comandos CREATE TABLE e INSERT INTO, incluindo as chaves primárias, chaves estrangeiras e restrições utilizadas na modelagem.
-
-Cada tabela possui 10 registros iniciais.
-
-7. Estrutura das tabelas
-7.1 CATEGORIAS
-
-A tabela CATEGORIAS armazena as categorias utilizadas para organizar os produtos.
-
-Campo	Tipo	Função
-id_categoria	INTEGER	Chave primária da categoria
-nome_categoria	VARCHAR(100)	Nome da categoria
-descricao_categoria	TEXT	Descrição da categoria
-tipo_categoria	VARCHAR(50)	Tipo da categoria
-
-A chave primária é:
-
-id_categoria
-7.2 PRODUTOS
-
-A tabela PRODUTOS armazena os produtos cadastrados no mercado.
-
-Campo	Tipo	Função
-id_produto	INTEGER	Chave primária do produto
-nome_produto	VARCHAR(50)	Nome do produto
-preco_produto	DECIMAL(10,2)	Preço do produto
-marca_produto	VARCHAR(50)	Marca do produto
-imagem_produto	VARCHAR(100)	Nome/caminho da imagem
-id_categoria	INTEGER	Chave estrangeira da categoria
-
-A chave primária é:
-
-id_produto
-
-A chave estrangeira é:
-
-id_categoria
-
-que referencia:
-
-CATEGORIAS.id_categoria
-7.3 ESTOQUE
-
-A tabela ESTOQUE armazena as informações de estoque de cada produto.
-
-Campo	Tipo	Função
-id_estoque	INTEGER	Chave primária do estoque
-quantidade	INTEGER	Quantidade disponível
-estoque_minimo	INTEGER	Quantidade mínima de estoque
-data_atualizacao	DATE	Data da última atualização
-id_produto	INTEGER	Chave estrangeira do produto
-
-A chave primária é:
-
-id_estoque
-
-A chave estrangeira é:
-
-id_produto
-
-que referencia:
-
-PRODUTOS.id_produto
-
-O campo id_produto também possui a restrição:
-
-UNIQUE (id_produto)
-
-Essa restrição impede que o mesmo produto apareça mais de uma vez na tabela de estoque.
-
-7.4 FORNECEDORES
-
-A tabela FORNECEDORES armazena os fornecedores cadastrados no sistema.
-
-Campo	Tipo	Função
-id_fornecedor	INTEGER	Chave primária
-nome_fornecedor	VARCHAR(100)	Nome do fornecedor
-cnpj_fornecedor	VARCHAR(18)	CNPJ do fornecedor
-telefone_fornecedor	VARCHAR(20)	Telefone do fornecedor
-email_fornecedor	VARCHAR(100)	E-mail do fornecedor
-
-A chave primária é:
-
-id_fornecedor
-7.5 CLIENTES
-
-A tabela CLIENTES armazena os clientes cadastrados no sistema.
-
-Campo	Tipo	Função
-id_cliente	INTEGER	Chave primária
-nome_cliente	VARCHAR(100)	Nome do cliente
-cpf_cliente	VARCHAR(11)	CPF do cliente
-telefone_cliente	VARCHAR(20)	Telefone do cliente
-email_cliente	VARCHAR(100)	E-mail do cliente
-numero_cartao	VARCHAR(20)	Número do cartão do cliente
-
-A chave primária é:
-
-id_cliente
-8. Relacionamentos do banco de dados
-
-A modelagem do banco possui os relacionamentos necessários para o projeto:
-
-Um relacionamento 1:N entre CATEGORIAS e PRODUTOS;
-Um relacionamento 1:1 entre PRODUTOS e ESTOQUE;
-As tabelas FORNECEDORES e CLIENTES são independentes na modelagem atual.
-8.1 Relacionamento CATEGORIAS → PRODUTOS (1:N)
-
-O relacionamento entre CATEGORIAS e PRODUTOS é do tipo 1:N.
-
-Isso significa que:
-
-Uma categoria pode possuir vários produtos;
-Cada produto está associado a uma categoria.
-
-A relação é representada da seguinte forma:
-
-CATEGORIAS 1 ───────── N PRODUTOS
-Chave envolvida
-
-Na tabela CATEGORIAS:
-
-id_categoria
-
-é a chave primária.
-
-Na tabela PRODUTOS:
-
-id_categoria
-
-é uma chave estrangeira que referencia CATEGORIAS.id_categoria.
-
-No banco de dados:
-
-FOREIGN KEY (id_categoria)
-REFERENCES CATEGORIAS (id_categoria)
-Exemplo
-
-Uma categoria como:
-
-Bebidas
-
-pode estar associada a vários produtos:
-
-Refrigerante Cola
-Suco de Laranja
-Água
-
-Todos esses produtos podem possuir o mesmo id_categoria.
-
-Por isso, a relação é:
-
-Uma CATEGORIA → vários PRODUTOS
-8.2 Relacionamento PRODUTOS → ESTOQUE (1:1)
-
-O relacionamento entre PRODUTOS e ESTOQUE foi modelado como 1:1.
-
-Isso significa que cada produto possui um único registro de estoque no modelo utilizado pelo sistema.
-
-A relação é representada da seguinte forma:
-
-PRODUTOS 1 ───────── 1 ESTOQUE
-Chaves envolvidas
-
-Na tabela PRODUTOS:
-
-id_produto
-
-é a chave primária.
-
-Na tabela ESTOQUE:
-
-id_produto
-
-é uma chave estrangeira que referencia:
-
-PRODUTOS.id_produto
-
-No banco de dados:
-
-FOREIGN KEY (id_produto)
-REFERENCES PRODUTOS (id_produto)
-
-Além disso, foi utilizada a restrição:
-
-UNIQUE (id_produto)
-Por que existe o UNIQUE?
-
-Sem o UNIQUE, seria possível cadastrar vários registros na tabela ESTOQUE utilizando o mesmo produto.
-
-Por exemplo:
-
-id_estoque | id_produto
------------ | ----------
-1           | 5
-2           | 5
-3           | 5
-
-Nesse caso, o mesmo produto teria três registros de estoque.
-
-Com:
-
-UNIQUE (id_produto)
-
-isso não é permitido.
-
-Assim, um produto pode estar associado a apenas um registro de estoque.
-
-8.3 FORNECEDORES
-
-A tabela FORNECEDORES é independente na modelagem atual do projeto.
-
-Ela possui sua própria chave primária:
-
-id_fornecedor
-
-e não possui uma chave estrangeira relacionada às demais tabelas.
-
-A tabela foi incluída para representar o cadastro de fornecedores do mercado.
-
-8.4 CLIENTES
-
-A tabela CLIENTES também é independente na modelagem atual do projeto.
-
-Ela possui sua própria chave primária:
-
-id_cliente
-
-e não possui uma chave estrangeira relacionada às demais tabelas.
-
-O número do cartão é armazenado diretamente como um atributo da tabela CLIENTES:
-
-numero_cartao
-
-Não foi criada uma tabela separada para cartão.
-
-9. Resumo dos relacionamentos
-
-A estrutura do banco pode ser representada da seguinte forma:
-
-                    1
-              CATEGORIAS
-                   │
-                   │
-                   │ N
-                   ▼
-                PRODUTOS
-                   │
-                   │ 1
-                   │
-                   │ 1
-                   ▼
-                ESTOQUE
-
-
-              FORNECEDORES
-
-                 CLIENTES
-
-De forma resumida:
-
-CATEGORIAS 1 ───────── N PRODUTOS
-PRODUTOS   1 ───────── 1 ESTOQUE
-
-FORNECEDORES → independente
-CLIENTES     → independente
-10. Diagrama do banco de dados
-
-O diagrama abaixo representa a estrutura das tabelas, seus atributos, chaves primárias, chaves estrangeiras e relacionamentos.
-
-11. Arquivo SQL
-
-O arquivo SQL do projeto está localizado em:
-
-documentacao/mercado.sql
-
-O arquivo contém:
-
-DROP TABLE IF EXISTS;
-CREATE TABLE;
-Chaves primárias;
-Chaves estrangeiras;
-Restrição UNIQUE;
-INSERT INTO;
-10 registros para cada tabela.
-
-As tabelas criadas pelo arquivo são:
-
-CATEGORIAS
-PRODUTOS
-ESTOQUE
-FORNECEDORES
-CLIENTES
-12. Gerenciamento de imagens
-
-O CRUD de Produtos possui gerenciamento de imagens.
-
-As imagens são enviadas pelo formulário do produto e armazenadas localmente na pasta:
-
-imagens/
-
-O nome da imagem é armazenado na tabela PRODUTOS, no campo:
-
-imagem_produto
-
-O servidor disponibiliza a pasta de imagens para que os arquivos possam ser exibidos pelo Front-end.
-
-13. Configuração do ambiente
-
-A conexão com o PostgreSQL utiliza variáveis de ambiente.
-
-Na pasta backend, deve existir um arquivo:
-
-.env
-
-Com as seguintes variáveis:
-
-DB_HOST=localhost
-DB_PORT=5432
-DB_NAME=nome_do_banco
-DB_USER=postgres
-DB_PASSWORD=sua_senha
-
-Os valores devem ser alterados de acordo com a configuração do PostgreSQL utilizado.
-
-O arquivo .env não deve ser enviado ao GitHub.
-
-14. Instalação
-
-Depois de baixar ou clonar o projeto, abra o terminal na pasta principal do projeto.
-
-Execute:
-
-npm install
-
-Esse comando instala as dependências necessárias definidas no package.json.
-
-15. Configuração do banco de dados
-
-Para configurar o banco:
-
-Criar um banco de dados no PostgreSQL.
-Configurar as informações de conexão no arquivo .env.
-Abrir o arquivo:
-documentacao/mercado.sql
-Executar o conteúdo do arquivo no PostgreSQL.
-Conferir a criação das cinco tabelas.
-Conferir a inserção dos registros.
-16. Execução do servidor
-
-Abra o terminal na pasta backend:
-
-cd backend
-
-Depois execute:
-
-node server.js
-
-O servidor utiliza a porta 3001 como porta padrão quando nenhuma outra porta é definida pela variável PORT.
-
-17. Acesso ao sistema
-
-Após iniciar o servidor, abra o arquivo:
-
-index.html
-
-O sistema apresenta o Menu principal, através do qual é possível acessar os módulos:
+O projeto possui Routes para:
 
 Produtos;
 Categorias;
+Estoque;
 Fornecedores;
 Clientes;
-Estoque.
+Menu.
+Controllers
 
-As páginas do Front-end realizam as requisições para a API do Back-end.
+Os Controllers são responsáveis por executar as operações solicitadas pelas Routes.
 
-18. Estrutura do projeto
-.
-├── backend
-│   ├── controllers
-│   │   ├── categoriasController.js
-│   │   ├── clientesController.js
-│   │   ├── estoqueController.js
-│   │   ├── fornecedoresController.js
-│   │   ├── menuController.js
-│   │   └── produtosController.js
-│   ├── database.js
-│   ├── routes
-│   │   ├── categoriasRoutes.js
-│   │   ├── clientesRoutes.js
-│   │   ├── estoqueRoutes.js
-│   │   ├── fornecedoresRoutes.js
-│   │   ├── menuRoutes.js
-│   │   └── produtosRoutes.js
-│   └── server.js
-│
-├── documentacao
-│   ├── diagrama_banco.png
-│   └── mercado.sql
-│
-├── frontend
-│   ├── Categorias
-│   │   ├── categoria.css
-│   │   ├── categoria.html
-│   │   └── categoria.js
-│   ├── Clientes
-│   │   ├── clientes.css
-│   │   ├── clientes.html
-│   │   └── clientes.js
-│   ├── Estoque
-│   │   ├── estoque.css
-│   │   ├── estoque.html
-│   │   └── estoque.js
-│   ├── Fornecedores
-│   │   ├── fornecedor.html
-│   │   ├── fornecedores.css
-│   │   └── fornecedores.js
-│   ├── Menu
-│   │   ├── menu.css
-│   │   └── menu.html
-│   └── Produtos
-│       ├── produtos.css
-│       ├── produtos.html
-│       └── produtos.js
-│
-├── imagens
-│   ├── fundo-menu.jpg
-│   └── silhueta.png
-│
-├── .gitignore
-├── index.html
-├── package.json
-├── package-lock.json
-├── README.md
-└── estrutura.txt
-19. Versionamento
+Eles realizam operações como:
 
-O projeto utiliza Git para controle de versão e GitHub para armazenamento do código-fonte.
+Inserção de dados;
+Consulta de dados;
+Alteração de dados;
+Exclusão de dados;
+Tratamento das respostas e erros.
+Banco de dados
 
-O repositório deve seguir a nomenclatura solicitada na atividade:
+O sistema utiliza o PostgreSQL para armazenar as informações.
 
-NomeDoAluno_3bim_NomeProjeto
+O banco possui as seguintes tabelas:
 
-O usuário solicitado para colaboração no projeto é:
+CATEGORIAS
+PRODUTOS
+ESTOQUE
+FORNECEDORES
+CLIENTES
+Relacionamentos
 
-rjhalmeman@gmail.com
-20. .gitignore
+CATEGORIAS → PRODUTOS
 
-O projeto possui um arquivo .gitignore na raiz.
+Uma categoria pode possuir vários produtos, caracterizando uma relação 1:N.
 
-Seu conteúdo é:
+PRODUTOS → ESTOQUE
 
-node_modules/
-.env
+Cada produto possui um registro correspondente no estoque, caracterizando uma relação 1:1.
 
-A pasta node_modules não é enviada ao repositório, pois suas dependências podem ser instaladas novamente através do comando:
+FORNECEDORES e CLIENTES
+
+São entidades independentes dentro do banco de dados.
+
+O diagrama do banco de dados está disponível na pasta documentacao.
+
+Arquivos de documentação
+
+documentacao/mercado.sql
+
+Contém os comandos SQL utilizados para criar as tabelas e inserir os registros iniciais no banco de dados.
+
+documentacao/diagrama_banco.png
+
+Contém o diagrama do banco de dados e seus relacionamentos.
+
+Como executar o projeto
+1. Instale as dependências
+
+Abra o terminal na pasta backend e execute:
 
 npm install
 
-O arquivo .env também é ignorado para evitar o envio das informações de acesso ao banco de dados.
+2. Configure o arquivo .env
 
-21. Autora
+Crie um arquivo chamado .env na pasta do backend com as informações de conexão do banco de dados.
+
+Exemplo:
+
+DB_HOST=localhost
+DB_PORT=5432
+DB_NAME=SeuBanco
+DB_USER=postgres
+DB_PASSWORD=SuaSenha
+PORT=3001
+
+3. Crie o banco de dados
+
+Abra o PGAdmin 4 e execute o arquivo:
+
+documentacao/mercado.sql
+
+O arquivo contém a criação das tabelas e a inserção dos dados iniciais.
+
+4. Inicie o servidor
+
+Na pasta backend, execute:
+
+node server.js
+
+O servidor será iniciado em:
+
+http://localhost:3001
+
+5. Abra o sistema
+
+Abra a página:
+
+frontend/Menu/menu.html
+
+no navegador.
+
+Fluxo do projeto
+
+O funcionamento do sistema acontece da seguinte forma:
+
+Usuário → HTML + JavaScript → Fetch → Servidor Node.js → Routes → Controller → database.js → PostgreSQL
+
+Depois que o banco realiza a operação, o resultado retorna pelo caminho inverso:
+
+PostgreSQL → database.js → Controller → Routes → Servidor → JavaScript → Página HTML
+
+Ou seja:
+
+O usuário realiza uma ação na página.
+O JavaScript pega e valida os dados.
+O JavaScript envia uma requisição utilizando Fetch.
+O servidor recebe a requisição.
+A Route identifica o caminho e direciona para o Controller.
+O Controller realiza a operação necessária.
+O database.js executa a consulta no PostgreSQL.
+O banco de dados retorna o resultado.
+O Controller envia a resposta para o frontend.
+O JavaScript recebe os dados e atualiza a página.
+Organização da arquitetura
+
+O projeto utiliza a seguinte organização:
+
+Frontend
+
+HTML + CSS + JavaScript
+
+↓
+
+Backend
+
+Node.js + Express
+
+↓
+
+Routes
+
+Definem os caminhos das requisições
+
+↓
+
+Controllers
+
+Executam as operações
+
+↓
+
+database.js
+
+Realiza o acesso ao banco
+
+↓
+
+PostgreSQL
+
+Armazena os dados
+
+Desenvolvido por
 
 Isabela Maria Ferreira dos Santos
 
-Técnico Integrado em Informática para Internet
-Turma M32
-2026
+DW1 — 3º Bimestre — 2026
