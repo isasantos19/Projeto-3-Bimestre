@@ -1,302 +1,216 @@
-Sobre o projeto
+# Mercado
 
-O Mercado é um sistema desenvolvido para a disciplina de Desenvolvimento Web 1 (DW1).
+## Sobre o projeto
 
-O objetivo do projeto é simular o gerenciamento de um mercado, permitindo o cadastro, consulta, alteração e exclusão de informações relacionadas aos produtos, categorias, estoque, fornecedores e clientes.
+Este projeto foi desenvolvido para a disciplina de Desenvolvimento Web 1 (DW1), como atividade avaliativa do 3º bimestre de 2026.
 
-A aplicação foi desenvolvida utilizando HTML, CSS e JavaScript no frontend. O backend foi desenvolvido em Node.js utilizando o Express, seguindo uma organização baseada em rotas e controllers. Os dados ficam armazenados em um banco de dados PostgreSQL.
+O sistema simula o gerenciamento de um mercado, permitindo realizar operações de cadastro, consulta, alteração e exclusão de informações.
 
-Como o projeto funciona
+O projeto utiliza uma arquitetura Cliente/Servidor com o padrão MVC, utilizando HTML, CSS e JavaScript no Frontend, Node.js e Express no Backend e PostgreSQL como banco de dados.
 
-O sistema permite que o usuário acesse diferentes áreas do mercado e realize operações de cadastro e gerenciamento dos dados.
+## Funcionalidades
 
-O usuário pode:
+O sistema possui as seguintes funcionalidades:
 
-Cadastrar, consultar, alterar e excluir produtos;
-Cadastrar, consultar, alterar e excluir categorias;
-Cadastrar, consultar, alterar e excluir informações do estoque;
-Cadastrar, consultar, alterar e excluir fornecedores;
-Cadastrar, consultar, alterar e excluir clientes;
-Cadastrar imagens para os produtos.
+- Cadastro, consulta, alteração e exclusão de Categorias;
+- Cadastro, consulta, alteração e exclusão de Produtos;
+- Cadastro, consulta, alteração e exclusão de Estoque;
+- Cadastro, consulta, alteração e exclusão de Fornecedores;
+- Cadastro, consulta, alteração e exclusão de Clientes;
+- Cadastro e exibição de imagens dos produtos;
+- Relacionamento entre Categorias e Produtos;
+- Relacionamento entre Produtos e Estoque.
 
-Quando o usuário realiza alguma ação, o JavaScript do frontend envia uma requisição para o servidor utilizando a API Fetch.
+## Tecnologias utilizadas
 
-O servidor recebe a requisição e encaminha para a rota correspondente. A rota direciona a requisição para o Controller responsável pela operação.
+- HTML5
+- CSS3
+- JavaScript
+- Node.js
+- Express
+- PostgreSQL
+- pg
+- dotenv
+- cors
+- multer
 
-O Controller realiza a operação necessária no banco de dados por meio do database.js, que utiliza o PostgreSQL.
+## Estrutura do projeto
 
-Depois disso, o resultado retorna para o frontend em formato JSON, e o JavaScript utiliza essas informações para atualizar a página.
+### Frontend
 
-Tecnologias utilizadas
-HTML5
-CSS3
-JavaScript
-Node.js
-Express
-PostgreSQL
-pg
-dotenv
-cors
-multer
-Estrutura do projeto
-Frontend
-Menu
+O Frontend é responsável pela interface do sistema e pela interação com o usuário.
 
-menu.html
+- **Menu**
+  - `menu.html`
+  - `menu.css`
 
-Contém a página inicial do sistema e os acessos para as diferentes áreas do mercado.
+- **Categorias**
+  - `categoria.html`
+  - `categoria.css`
+  - `categoria.js`
 
-menu.css
+- **Produtos**
+  - `produtos.html`
+  - `produtos.css`
+  - `produtos.js`
 
-Responsável pela estilização da página inicial.
+- **Estoque**
+  - `estoque.html`
+  - `estoque.css`
+  - `estoque.js`
 
-Categorias
+- **Fornecedores**
+  - `fornecedor.html`
+  - `fornecedores.css`
+  - `fornecedores.js`
 
-categoria.html
+- **Clientes**
+  - `clientes.html`
+  - `clientes.css`
+  - `clientes.js`
 
-Contém a interface para gerenciamento das categorias.
+### Backend
 
-categoria.css
+O Backend é responsável pelo processamento das requisições, comunicação com o banco de dados e organização das rotas e controllers.
 
-Responsável pela estilização da página de categorias.
+- `server.js` — inicializa o servidor e configura as rotas;
+- `database.js` — realiza a conexão com o PostgreSQL;
+- `routes/` — contém as rotas da aplicação;
+- `controllers/` — contém as funções responsáveis pelas operações do sistema.
 
-categoria.js
+## Arquitetura
 
-Realiza as requisições para o servidor e controla as operações de cadastro, consulta, alteração e exclusão de categorias.
+O sistema utiliza uma arquitetura Cliente/Servidor organizada com MVC.
 
-Produtos
+O fluxo de funcionamento é:
 
-produtos.html
+Usuário → HTML/CSS/JavaScript → Fetch → Server → Routes → Controllers → database.js → PostgreSQL
 
-Contém a interface para gerenciamento dos produtos.
+Após a operação no banco de dados, o resultado retorna pelo mesmo caminho até chegar novamente ao Frontend.
 
-produtos.css
+## Banco de dados
 
-Responsável pela estilização da página de produtos.
+O banco de dados foi desenvolvido utilizando PostgreSQL.
 
-produtos.js
+O sistema possui as seguintes tabelas:
 
-Realiza as requisições para o servidor, controla o cadastro e gerenciamento dos produtos e também realiza o envio das imagens.
+- `CATEGORIAS`
+- `PRODUTOS`
+- `ESTOQUE`
+- `FORNECEDORES`
+- `CLIENTES`
 
-Estoque
+### Relacionamentos
 
-estoque.html
+**CATEGORIAS → PRODUTOS**
 
-Contém a interface para gerenciamento do estoque.
+Relacionamento 1:N.
 
-estoque.css
+Uma categoria pode possuir vários produtos, enquanto cada produto pertence a uma categoria.
 
-Responsável pela estilização da página de estoque.
+**PRODUTOS → ESTOQUE**
 
-estoque.js
+Relacionamento 1:1.
 
-Realiza as requisições para o servidor e controla as operações de cadastro, consulta, alteração e exclusão do estoque.
+Cada produto possui um registro de estoque, utilizando uma chave estrangeira com restrição `UNIQUE`.
 
-Fornecedores
+**FORNECEDORES**
 
-fornecedor.html
+Tabela independente utilizada para armazenar os dados dos fornecedores.
 
-Contém a interface para gerenciamento dos fornecedores.
+**CLIENTES**
 
-fornecedores.css
+Tabela independente utilizada para armazenar os dados dos clientes e seus respectivos números de cartão.
 
-Responsável pela estilização da página de fornecedores.
+## Documentação
 
-fornecedores.js
+A pasta `documentacao/` contém os arquivos utilizados para documentar o banco de dados:
 
-Realiza as requisições para o servidor e controla as operações de cadastro, consulta, alteração e exclusão dos fornecedores.
+- `mercado.sql` — script de criação das tabelas e inserção dos dados;
+- `diagrama_banco.png` — diagrama do banco de dados.
 
-Clientes
+## Como executar o projeto
 
-clientes.html
+### 1. Instalar as dependências
 
-Contém a interface para gerenciamento dos clientes.
-
-clientes.css
-
-Responsável pela estilização da página de clientes.
-
-clientes.js
-
-Realiza as requisições para o servidor e controla as operações de cadastro, consulta, alteração e exclusão dos clientes.
-
-Backend
-server.js
-
-Responsável por iniciar o servidor, configurar o Express, permitir requisições do frontend, disponibilizar arquivos estáticos e registrar as rotas da aplicação.
-
-database.js
-
-Responsável pela conexão com o banco de dados PostgreSQL e pela execução das consultas SQL por meio do query.
-
-Routes
-
-As Routes definem os caminhos da API e direcionam cada requisição para o Controller correspondente.
-
-O projeto possui Routes para:
-
-Produtos;
-Categorias;
-Estoque;
-Fornecedores;
-Clientes;
-Menu.
-Controllers
-
-Os Controllers são responsáveis por executar as operações solicitadas pelas Routes.
-
-Eles realizam operações como:
-
-Inserção de dados;
-Consulta de dados;
-Alteração de dados;
-Exclusão de dados;
-Tratamento das respostas e erros.
-Banco de dados
-
-O sistema utiliza o PostgreSQL para armazenar as informações.
-
-O banco possui as seguintes tabelas:
-
-CATEGORIAS
-PRODUTOS
-ESTOQUE
-FORNECEDORES
-CLIENTES
-Relacionamentos
-
-CATEGORIAS → PRODUTOS
-
-Uma categoria pode possuir vários produtos, caracterizando uma relação 1:N.
-
-PRODUTOS → ESTOQUE
-
-Cada produto possui um registro correspondente no estoque, caracterizando uma relação 1:1.
-
-FORNECEDORES e CLIENTES
-
-São entidades independentes dentro do banco de dados.
-
-O diagrama do banco de dados está disponível na pasta documentacao.
-
-Arquivos de documentação
-
-documentacao/mercado.sql
-
-Contém os comandos SQL utilizados para criar as tabelas e inserir os registros iniciais no banco de dados.
-
-documentacao/diagrama_banco.png
-
-Contém o diagrama do banco de dados e seus relacionamentos.
-
-Como executar o projeto
-1. Instale as dependências
-
-Abra o terminal na pasta backend e execute:
+Abra o terminal na pasta do Backend e execute:
 
 npm install
 
-2. Configure o arquivo .env
+### 2. Configurar o arquivo .env
 
-Crie um arquivo chamado .env na pasta do backend com as informações de conexão do banco de dados.
+Crie um arquivo `.env` na pasta do Backend com as informações do PostgreSQL:
 
-Exemplo:
-
-DB_HOST=localhost
-DB_PORT=5432
-DB_NAME=SeuBanco
-DB_USER=postgres
-DB_PASSWORD=SuaSenha
+DB_HOST=localhost  
+DB_PORT=5432  
+DB_NAME=nome_do_banco  
+DB_USER=postgres  
+DB_PASSWORD=sua_senha  
 PORT=3001
 
-3. Crie o banco de dados
+### 3. Criar o banco de dados
 
-Abra o PGAdmin 4 e execute o arquivo:
+Abra o PostgreSQL utilizando o PGAdmin 4 e execute o arquivo:
 
-documentacao/mercado.sql
+`documentacao/mercado.sql`
 
-O arquivo contém a criação das tabelas e a inserção dos dados iniciais.
+O arquivo cria as tabelas e insere os dados iniciais do sistema.
 
-4. Inicie o servidor
+### 4. Iniciar o servidor
 
-Na pasta backend, execute:
+No terminal, dentro da pasta do Backend, execute:
 
 node server.js
 
-O servidor será iniciado em:
+O servidor será iniciado na porta:
 
 http://localhost:3001
 
-5. Abra o sistema
+### 5. Abrir o sistema
 
-Abra a página:
+Após iniciar o servidor, abra a página:
 
-frontend/Menu/menu.html
+`frontend/Menu/menu.html`
 
-no navegador.
+A partir do Menu é possível acessar as diferentes funcionalidades do sistema.
 
-Fluxo do projeto
+## Rotas principais
 
-O funcionamento do sistema acontece da seguinte forma:
+O Backend possui rotas separadas para cada parte do sistema:
 
-Usuário → HTML + JavaScript → Fetch → Servidor Node.js → Routes → Controller → database.js → PostgreSQL
+- `/produtos`
+- `/categorias`
+- `/estoque`
+- `/fornecedores`
+- `/clientes`
+- `/menu`
 
-Depois que o banco realiza a operação, o resultado retorna pelo caminho inverso:
+Cada rota possui operações específicas para listar, cadastrar, consultar, atualizar e excluir registros.
 
-PostgreSQL → database.js → Controller → Routes → Servidor → JavaScript → Página HTML
+## Imagens dos produtos
 
-Ou seja:
+O sistema utiliza o `multer` para realizar o envio das imagens dos produtos.
 
-O usuário realiza uma ação na página.
-O JavaScript pega e valida os dados.
-O JavaScript envia uma requisição utilizando Fetch.
-O servidor recebe a requisição.
-A Route identifica o caminho e direciona para o Controller.
-O Controller realiza a operação necessária.
-O database.js executa a consulta no PostgreSQL.
-O banco de dados retorna o resultado.
-O Controller envia a resposta para o frontend.
-O JavaScript recebe os dados e atualiza a página.
-Organização da arquitetura
+As imagens são armazenadas na pasta `imagens/` e podem ser exibidas posteriormente no Frontend.
 
-O projeto utiliza a seguinte organização:
+## Objetivo do projeto
 
-Frontend
+O objetivo do projeto é aplicar os conhecimentos estudados em Desenvolvimento Web 1, principalmente:
 
-HTML + CSS + JavaScript
+- Arquitetura Cliente/Servidor;
+- Padrão MVC;
+- Criação de APIs;
+- Rotas;
+- Controllers;
+- Comunicação entre Frontend e Backend;
+- Operações CRUD;
+- Conexão com PostgreSQL;
+- Relacionamentos entre tabelas;
+- Manipulação de imagens;
+- Variáveis de ambiente.
 
-↓
+## Desenvolvido por
 
-Backend
+**Isabela Maria Ferreira dos Santos**
 
-Node.js + Express
-
-↓
-
-Routes
-
-Definem os caminhos das requisições
-
-↓
-
-Controllers
-
-Executam as operações
-
-↓
-
-database.js
-
-Realiza o acesso ao banco
-
-↓
-
-PostgreSQL
-
-Armazena os dados
-
-Desenvolvido por
-
-Isabela Maria Ferreira dos Santos
-
-DW1 — 3º Bimestre — 2026
+Desenvolvimento Web 1 — 3º Bimestre — 2026
